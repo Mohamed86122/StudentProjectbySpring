@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public class MySQLimpl implements EtudiantDao {
 
-    JdbcTemplate jdbcTemplate ;
+    JdbcTemplate jdbcTemplate;
 
     @Autowired
     public void setDataSource(DataSource dataSource) {
@@ -20,23 +20,39 @@ public class MySQLimpl implements EtudiantDao {
     }
 
     @Override
-    public void persister(Etudiant etudiant)
-    {
-        String sql = "INSERT INTO etudiant values (?, ?, ?)";
+    public void persister(Etudiant etudiant) {
+        String sql = "INSERT INTO student values (?, ?, ?)";
         this.jdbcTemplate.update(sql, etudiant.getId(), etudiant.getPrenom(), etudiant.getNom());
     }
 
     @Override
-    public void update(Etudiant etudiant)
-    {
-        String sql = "UPDATE etudiant set prenom=?, nom=? WHERE id=?";
+    public void update(Etudiant etudiant) {
+        String sql = "UPDATE student set prenom=?, nom=? WHERE id=?";
         this.jdbcTemplate.update(sql, etudiant.getId(), etudiant.getPrenom(), etudiant.getNom());
+    }
+
+
+
+
+    @Override
+    public Etudiant DeleteById(String id)
+    {
+        String sql = "DELETE From student WHERE id=?";
+        return this.jdbcTemplate.queryForObject(sql, new EtudiantRowMapper(), id);
+    }
+
+
+    @Override
+    public void DeleteAll(Etudiant etudiant)
+    {
+        String sql = "DELETE From student ";
+        this.jdbcTemplate.update(sql);
     }
 
     @Override
     public List<Etudiant> recupererTous()
     {
-        String sql = "SELECT * FROM etudiant";
+        String sql = "SELECT * FROM student";
         return this.jdbcTemplate.query(sql, new EtudiantRowMapper());
     }
 

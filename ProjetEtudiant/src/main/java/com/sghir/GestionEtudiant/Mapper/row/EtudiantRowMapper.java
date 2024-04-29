@@ -9,8 +9,6 @@ import java.sql.SQLException;
 
 public class EtudiantRowMapper implements RowMapper<Etudiant>
 {
-
-
     @Override
     public Etudiant mapRow(ResultSet rs, int rowNum) throws SQLException {
         Etudiant etudiant = new Etudiant(

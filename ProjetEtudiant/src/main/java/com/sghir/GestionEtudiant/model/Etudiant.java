@@ -1,5 +1,6 @@
 package com.sghir.GestionEtudiant.model;
 
+
 public class Etudiant
 {
     private String id;

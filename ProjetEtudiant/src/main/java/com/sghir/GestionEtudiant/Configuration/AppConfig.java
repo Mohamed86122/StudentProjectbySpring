@@ -1,5 +1,8 @@
 package com.sghir.GestionEtudiant.Configuration;
 
+import com.sghir.generateur.Implementation.AutoImcremet;
+import com.sghir.generateur.Implementation.Idgen;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -29,5 +32,15 @@ public class AppConfig
         return new DriverManagerDataSource(url, username, password);
     }
 
+    @Bean
+    @Qualifier("AutoImcremet")
+    public Idgen idGenerateur() {
+        return new Idgen() {
+            @Override
+            public String genererId() {
+                return null;
+            }
+        };
+    }
 
 }

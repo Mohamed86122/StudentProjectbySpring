@@ -10,6 +10,10 @@ public interface EtudiantDao
 
     public void update(Etudiant etudiant);
 
+
+
+    public Etudiant DeleteById(String id);
+    public void DeleteAll(Etudiant etudiant);
     public List<Etudiant> recupererTous();
 
     public Etudiant recupererParId(String id);
